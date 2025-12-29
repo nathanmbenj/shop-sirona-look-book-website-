@@ -30,14 +30,6 @@ jobs:
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
-          exclude-paths: |
-            .git
-            .github
-            README.md
-            SETUP.md
-            PINTEREST_LINKS.md
-            .gitignore
-            .DS_Store
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
