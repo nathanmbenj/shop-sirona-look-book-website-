@@ -10,56 +10,150 @@
 
 <body>
     <header>
-        <h1>SHOP SIRONA FESTIVAL OUTFITS</h1>
-        <p>Find your perfect festival style</p>
+        <div class="header-content">
+            <div>
+                <h1>SHOP SIRONA FESTIVAL OUTFITS</h1>
+                <p>Find your perfect festival style</p>
+            </div>
+            <div class="cart-icon-container">
+                <button class="cart-icon-btn" onclick="toggleCart()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
     </header>
 
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="goToCheckout()" id="checkoutBtn" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
     <main class="gallery">
-        <div class="photo-card">
-            <img src="photos/dark-sparkle-fairy.jpg" alt="Dark Sparkle Fairy Outfit">
+        <div class="photo-card" data-product-id="1" data-product-name="Dark Sparkle Fairy Outfit" data-product-price="89.99">
+            <a href="product.html?id=1" class="product-image-link">
+                <img src="photos/dark-sparkle-fairy.jpg" alt="Dark Sparkle Fairy Outfit">
+            </a>
             <div class="photo-caption">Dark Sparkle Fairy Outfit</div>
+            <div class="product-info">
+                <div class="product-price">$89.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(1, 'Dark Sparkle Fairy Outfit', 89.99, 'photos/dark-sparkle-fairy.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/The Golden Hemlock Set.jpg" alt="The Golden Hemlock Set">
+        <div class="photo-card" data-product-id="2" data-product-name="The Golden Hemlock Set" data-product-price="129.99">
+            <a href="product.html?id=2" class="product-image-link">
+                <img src="photos/The Golden Hemlock Set.jpg" alt="The Golden Hemlock Set">
+            </a>
             <div class="photo-caption">The Golden Hemlock Set</div>
+            <div class="product-info">
+                <div class="product-price">$129.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(2, 'The Golden Hemlock Set', 129.99, 'photos/The Golden Hemlock Set.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/Magical Bxtch Keychain.jpg" alt="Magical Bxtch Keychain">
+        <div class="photo-card" data-product-id="3" data-product-name="Magical Bxtch Keychain" data-product-price="19.99">
+            <a href="product.html?id=3" class="product-image-link">
+                <img src="photos/Magical Bxtch Keychain.jpg" alt="Magical Bxtch Keychain">
+            </a>
             <div class="photo-caption">Magical Bxtch Keychain</div>
+            <div class="product-info">
+                <div class="product-price">$19.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(3, 'Magical Bxtch Keychain', 19.99, 'photos/Magical Bxtch Keychain.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/Mushroom Accessory Holder.jpg" alt="Mushroom Accessory Holder">
+        <div class="photo-card" data-product-id="4" data-product-name="Mushroom Accessory Holder" data-product-price="34.99">
+            <a href="product.html?id=4" class="product-image-link">
+                <img src="photos/Mushroom Accessory Holder.jpg" alt="Mushroom Accessory Holder">
+            </a>
             <div class="photo-caption">Mushroom Accessory Holder</div>
+            <div class="product-info">
+                <div class="product-price">$34.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(4, 'Mushroom Accessory Holder', 34.99, 'photos/Mushroom Accessory Holder.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/The Rave Fae.jpg" alt="The Rave Fae">
+        <div class="photo-card" data-product-id="5" data-product-name="The Rave Fae" data-product-price="109.99">
+            <a href="product.html?id=5" class="product-image-link">
+                <img src="photos/The Rave Fae.jpg" alt="The Rave Fae">
+            </a>
             <div class="photo-caption">The Rave Fae</div>
+            <div class="product-info">
+                <div class="product-price">$109.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(5, 'The Rave Fae', 109.99, 'photos/The Rave Fae.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/The Velvet Flutter set.jpg" alt="The Velvet Flutter set">
+        <div class="photo-card" data-product-id="6" data-product-name="The Velvet Flutter set" data-product-price="119.99">
+            <a href="product.html?id=6" class="product-image-link">
+                <img src="photos/The Velvet Flutter set.jpg" alt="The Velvet Flutter set">
+            </a>
             <div class="photo-caption">The Velvet Flutter set</div>
+            <div class="product-info">
+                <div class="product-price">$119.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(6, 'The Velvet Flutter set', 119.99, 'photos/The Velvet Flutter set.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/Red Rosethorn Fae Set.jpg" alt="Red Rosethorn Fae Set">
+        <div class="photo-card" data-product-id="7" data-product-name="Red Rosethorn Fae Set" data-product-price="139.99">
+            <a href="product.html?id=7" class="product-image-link">
+                <img src="photos/Red Rosethorn Fae Set.jpg" alt="Red Rosethorn Fae Set">
+            </a>
             <div class="photo-caption">Red Rosethorn Fae Set</div>
+            <div class="product-info">
+                <div class="product-price">$139.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(7, 'Red Rosethorn Fae Set', 139.99, 'photos/Red Rosethorn Fae Set.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/The Seraphena Set.jpg" alt="The Seraphena Set">
+        <div class="photo-card" data-product-id="8" data-product-name="The Seraphena Set" data-product-price="149.99">
+            <a href="product.html?id=8" class="product-image-link">
+                <img src="photos/The Seraphena Set.jpg" alt="The Seraphena Set">
+            </a>
             <div class="photo-caption">The Seraphena Set</div>
+            <div class="product-info">
+                <div class="product-price">$149.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(8, 'The Seraphena Set', 149.99, 'photos/The Seraphena Set.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/The Magernta Fae Set.jpg" alt="The Magenta Fae Set">
+        <div class="photo-card" data-product-id="9" data-product-name="The Magenta Fae Set" data-product-price="129.99">
+            <a href="product.html?id=9" class="product-image-link">
+                <img src="photos/The Magernta Fae Set.jpg" alt="The Magenta Fae Set">
+            </a>
             <div class="photo-caption">The Magenta Fae Set</div>
+            <div class="product-info">
+                <div class="product-price">$129.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(9, 'The Magenta Fae Set', 129.99, 'photos/The Magernta Fae Set.jpg')">Add to Cart</button>
+            </div>
         </div>
-        <div class="photo-card">
-            <img src="photos/Dark Purple Velvet Bodysuit.jpg" alt="Dark Purple Velvet Bodysuit">
+        <div class="photo-card" data-product-id="10" data-product-name="Dark Purple Velvet Bodysuit" data-product-price="99.99">
+            <a href="product.html?id=10" class="product-image-link">
+                <img src="photos/Dark Purple Velvet Bodysuit.jpg" alt="Dark Purple Velvet Bodysuit">
+            </a>
             <div class="photo-caption">Dark Purple Velvet Bodysuit</div>
+            <div class="product-info">
+                <div class="product-price">$99.99</div>
+                <button class="add-to-cart-btn" onclick="addToCart(10, 'Dark Purple Velvet Bodysuit', 99.99, 'photos/Dark Purple Velvet Bodysuit.jpg')">Add to Cart</button>
+            </div>
         </div>
     </main>
 
     <footer>
         <p>© 2025 Sirona Festival Outfits. All rights reserved.</p>
     </footer>
+
+    <script src="cart.js"></script>
 </body>
 
 </html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmed - SHOP SIRONA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div>
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">SHOP SIRONA FESTIVAL OUTFITS</a></h1>
+            </div>
+        </div>
+    </header>
+
+    <main class="success-container">
+        <div class="success-content">
+            <div class="success-icon">✓</div>
+            <h1>Order Confirmed!</h1>
+            <p>Thank you for your purchase. Your order has been successfully processed.</p>
+            <p class="payment-method">Payment Method: <span id="paymentMethod"></span></p>
+            <p>You will receive a confirmation email shortly.</p>
+            <a href="index.html" class="back-to-shop-btn">Continue Shopping</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Sirona Festival Outfits. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Get payment method from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const method = urlParams.get('method') || 'Card';
+        document.getElementById('paymentMethod').textContent = method;
+    </script>
+</body>
+
+</html>
+

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="pageTitle">Product - SHOP SIRONA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <div>
+                <h1><a href="index.html" style="text-decoration: none; color: inherit;">SHOP SIRONA FESTIVAL OUTFITS</a></h1>
+            </div>
+            <div class="cart-icon-container">
+                <button class="cart-icon-btn" onclick="toggleCart()">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+                        <line x1="3" y1="6" x2="21" y2="6"></line>
+                        <path d="M16 10a4 4 0 0 1-8 0"></path>
+                    </svg>
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-cart" onclick="toggleCart()">&times;</button>
+        </div>
+        <div class="cart-items" id="cartItems">
+            <p class="empty-cart">Your cart is empty</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <strong>Total: $<span id="cartTotal">0.00</span></strong>
+            </div>
+            <button class="checkout-btn" onclick="goToCheckout()" id="checkoutBtn" disabled>Proceed to Checkout</button>
+        </div>
+    </div>
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+
+    <main class="product-page">
+        <div class="breadcrumb">
+            <a href="index.html">Home</a> / <span id="breadcrumbProduct">Product</span>
+        </div>
+        
+        <div class="product-container">
+            <div class="product-image-section">
+                <img id="productImage" src="" alt="" class="product-main-image">
+            </div>
+            
+            <div class="product-details-section">
+                <h1 id="productName" class="product-title"></h1>
+                <div class="product-price-large" id="productPrice"></div>
+                
+                <div class="product-description">
+                    <h2>Description</h2>
+                    <p id="productDescription"></p>
+                </div>
+                
+                <div class="product-details-list">
+                    <h2>Details</h2>
+                    <ul id="productDetails"></ul>
+                </div>
+                
+                <div class="product-actions">
+                    <button class="add-to-cart-btn-large" id="addToCartBtn">Add to Cart</button>
+                    <a href="#" id="pinterestLink" class="pinterest-btn" target="_blank" rel="noopener noreferrer">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.403.041-3.441.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/>
+                        </svg>
+                        View on Pinterest
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 Sirona Festival Outfits. All rights reserved.</p>
+    </footer>
+
+    <script src="products.js"></script>
+    <script src="cart.js"></script>
+    <script>
+        // Get product ID from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = parseInt(urlParams.get('id'));
+        
+        // Load product data
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!productId) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            const product = getProduct(productId);
+            
+            if (!product) {
+                window.location.href = 'index.html';
+                return;
+            }
+            
+            // Populate product page
+            document.getElementById('pageTitle').textContent = product.name + ' - SHOP SIRONA';
+            document.getElementById('breadcrumbProduct').textContent = product.name;
+            document.getElementById('productImage').src = product.image;
+            document.getElementById('productImage').alt = product.name;
+            document.getElementById('productName').textContent = product.name;
+            document.getElementById('productPrice').textContent = '$' + product.price.toFixed(2);
+            document.getElementById('productDescription').textContent = product.description;
+            document.getElementById('pinterestLink').href = product.pinterestLink;
+            
+            // Populate details list
+            const detailsList = document.getElementById('productDetails');
+            product.details.forEach(detail => {
+                const li = document.createElement('li');
+                li.textContent = detail;
+                detailsList.appendChild(li);
+            });
+            
+            // Set up add to cart button
+            document.getElementById('addToCartBtn').addEventListener('click', function() {
+                addToCart(product.id, product.name, product.price, product.image);
+            });
+        });
+    </script>
+</body>
+
+</html>
+
